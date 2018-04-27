@@ -54,6 +54,16 @@ export class HeroService {
     );
   }
 
+  addHero (hero: Hero): Observable<Hero> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
+      tap((heroes: Hero) => this.log(`added hero w/ id=${hero.id}`)),
+      catchError(this.handleError<Hero>('addHero'))
+    );
+  }
+
   private log(message: string) {
     this.messagesService.add('HeroService: ' + message);
   }
