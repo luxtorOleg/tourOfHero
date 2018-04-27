@@ -1,4 +1,5 @@
-<button (click)="add(heroName.value); heroName.value=''">
+<button (click)="add(heroName.value); heroName.value=''">Add</button>
+  <input type="text" #heroName>
 <ul class="heroes">
   <li *ngFor="let hero of heroes" >
     <a routerLink="/detail/{{hero.id}}">
